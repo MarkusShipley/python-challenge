@@ -122,7 +122,7 @@ with open(csvpath) as csvfile:
 #Output from monthly variance was printed to validate and confirm code and calculations
 
 ##########################################################################       
-######## Part 5 - Mean (Average), Max and Min  ###########################
+######## Part 6 - Mean (Average), Max and Min  ###########################
 ##########################################################################
 
 #Calculation of Mean/Average
@@ -139,4 +139,67 @@ with open(csvpath) as csvfile:
     print('Min monthly PL Variance: ' + str(min_variance))
 
 
+##########################################################################       
+######## Part 7 - Assigning a date to the Max and Min#####################
+##########################################################################
 
+#Earlier, the PL amounts were split from the dates and converted from int to string so that calcs could be performed
+#At the start, we also removed the header column - which was located and index 0 - to get it out of the way so we had only the data with which to work
+#Ventually, monthly variance list named monthly_variance was created that contained the difference in the PL for current and prior month
+#With the header removed trom the original table, the index between the original table and monthly variance is one.
+#If I insert zero or null into index position 0 of the monthly_variance list, the index for both tables will align
+#once aligned, the index position of the varaince can determined and used in the retrieiving of the data from the first table
+
+#insert None into monthly variance table at index 0 to align the index with the original table
+    monthly_variance.insert(0,None)
+    print(monthly_variance)
+
+#Get index for Max and Min from the monthly variance table
+    max_variance_index = monthly_variance.index(max_variance)
+    min_variance_index = monthly_variance.index(min_variance)
+    print(max_variance_index)
+    print(min_variance_index)
+
+#Split original long list into a short list of dates same as that in Step 2
+    dates=[]
+    for short_list_dates in long_list:
+        dates.append(short_list_dates[0])
+    print(dates)
+
+#Get value from dates list using the max_varaince_index and min_variance_index values
+#Note: This code commented out does not work.  However, the print statement using the results from earlier does work.  
+#I can string the others together to get it to print.  However, not sure how to get it all into a file to save.
+    #max_date_index=dates.index(max_variance_index)
+    #min_date_index=dates.index(min_variance_index)
+    #max_date_index=long_list.index(25)
+    #min_date_index=long_list.index(44)
+    print(dates[max_variance_index])
+    print(dates[min_variance_index])
+
+##########################################################################       
+######## Part 8 - Terminal Print                     #####################
+##########################################################################
+    print('Financial Analysis')
+    print('--------------------------------------')
+    print('Number of Months: ' + str(number_of_months))
+    print('Total Profit and loss: ' + str(Total_PL))
+    print('Average monthly Profit and Loss: ' + str(avg))
+    print('Average monthly PL Variance: ' + str(avg_variance))
+    print('Max monthly PL Variance: ' + str(dates[max_variance_index]) + ': '+str(max_variance))
+    print('Min monthly PL Variance: ' + str(dates[min_variance_index]) + ': '+str(min_variance))
+    
+##########################################################################       
+######## Part 9 - Save file                          #####################
+##########################################################################
+    f = open('FinancialAnalysis.txt', 'w')
+    f.write('Financial Analysis\n')
+    f.write('--------------------------------------\n') #The new-line character has been used
+    f.write('Number of Months: ' + str(number_of_months)+'\n')
+    f.write('Total Profit and loss: ' + str(Total_PL)+'\n')
+    f.write('Average monthly Profit and Loss: ' + str(avg)+'\n')
+    f.write('Average monthly PL Variance: ' + str(avg_variance)+'\n')
+    f.write('Max monthly PL Variance: '+ str(dates[max_variance_index]) + ': ' + str(max_variance)+'\n')
+    f.write('Min monthly PL Variance: '+ str(dates[min_variance_index]) + ': ' + str(min_variance)+'\n')
+    f.write('--------------------------------------\n')
+    f.close()
+f.close() #Closes the main file opened at start of program

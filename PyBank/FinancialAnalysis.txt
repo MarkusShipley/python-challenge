@@ -1,0 +1,9 @@
+Financial Analysis
+--------------------------------------
+Number of Months: 86
+Total Profit and loss: 38382578
+Average monthly Profit and Loss: 446309.0465116279
+Average monthly PL Variance: -2315.1176470588234
+Max monthly PL Variance: Feb-2012: 1926159
+Min monthly PL Variance: Sep-2013: -2196167
+--------------------------------------
