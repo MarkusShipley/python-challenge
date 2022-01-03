@@ -203,3 +203,7 @@ with open(csvpath) as csvfile:
     f.write('--------------------------------------\n')
     f.close()
 f.close() #Closes the main file opened at start of program
+
+##########################################################################       
+######## Routing complete and file closed            #####################
+##########################################################################
