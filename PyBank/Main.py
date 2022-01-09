@@ -19,10 +19,7 @@ with open(csvpath) as csvfile:
     #Command below defiined 'row' that I am going to use and leverage later to append my long list--move the data from just being read and printed.
     #once loaded into a list or nested list, I can start doing calcs and using python to leverage the data.
     
-    #Nested liste does not appear tpo create if the two lines below run
-    #for row in csvreader:
-        #print(row)
-
+  
 ##########################################################################       
 ###########################Part 1 END - CSV FILE IMPORTED ################
 ##########################################################################
@@ -47,8 +44,7 @@ with open(csvpath) as csvfile:
 #Lists are zero indexed and the header row will be included when the calculations are performed.  
 #As a result, the pop() function is used because it allows index references to remove the column headers at the 0 index.
 #Had to move the pop out of the iteration once I resolved the issue with the printing.
-# QUESTION:WHy was the the multiple print(row) hosing up my output?  The strange this, the number of months counted correctly no matter how bizarre the print out was.
-#Question: was it just the view of my data because of all of the prints but the nested table was actually ok?
+
 
     long_list.pop(0)
     print(long_list)

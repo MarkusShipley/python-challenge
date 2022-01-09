@@ -87,23 +87,66 @@ with open(csvpath) as csvfile:
 
     print(cand_votes)
 
+   
+   
 ##########################################################################  
 #################### Step 6 (Question 4 - % by Candidate)#################
 ########################################################################## 
 
 #Using a dictionary to calculate the % by Candidate 
 #Going to use the copy() dictionary function to to cpy the cand_votes dictionary to cand_pct dictionary to keep percent separate
+    
     cand_pct = cand_votes
     for name, count in cand_pct.items():
         cand_pct[name] = count / total_votes * 100
     
     print(cand_pct)
 
+
+    cand_votes = {}
+
+    for vote in votes:
+        name = vote[2]
+        if name not in cand_votes.keys():
+            cand_votes[name] = 1
+        else:
+            cand_votes[name] += 1
+
+    print(cand_votes)
+##########################################################################  
 ####################Step 7 (Question 5 - Elections winner)####################
 #Either the cand_votes or cand_pst disctionary can be used
 #Going to use max function that I read about that can be used with dictionaries
 # https://www.kite.com/python/answers/how-to-find-the-max-value-in-a-dictionary-in-python and https://pythonguides.com/python-find-max-value-in-a-dictionary/
-
+##########################################################################  
     winner = max(cand_votes, key=cand_votes.get)
 
     print(winner)
+
+##########################################################################  
+####################Step 8  Generate File ################################
+##########################################################################  
+    f = open("electionanalysis.txt","w")
+    f.write("Election Results\n")
+    f.write("----------------------------------------------\n")
+    f.write("Percent of Vote Received by Candidate\n")
+    for name, value in cand_pct.items():
+        f.write('%s:%s\n' % (name, value))
+    f.write("----------------------------------------------\n")
+    f.write("Election Winner: " + (winner) + '\n')
+    f.write("----------------------------------------------\n")
+    f.write('Total votes cast: ' + str(total_votes)+ '\n')
+    f.close()
+
+ ##########################################################################  
+####################Step 8  Generate View to Terminal######################
+########################################################################## 
+    print("---------------------------------------------------")
+    print('Total votes cast: ' +str(total_votes))
+    print("---------------------------------------------------")
+    print('Percentage votes received by candidate:')
+    for name, value in cand_pct.items():
+        print(name, value)
+    print("---------------------------------------------------")
+    print("Election Winner: " + (winner))
+    print("---------------------------------------------------")
